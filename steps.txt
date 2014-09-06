@@ -1,0 +1,60 @@
+Git steps:
+
+Original setup:
+git clone <repo>
+
+cd <repo>
+
+Workflow:
+git branch newBranchName
+git checkout newBranchName
+
+//This will create a new branch and put you into it, which is the same as "git checkout -b newBranchName"
+
+//Run test cases, if some fail note it for later.
+
+//change file.txt, at this point your local changes and local branch are not in sync
+
+git status
+// This will show 1 file has been modified
+
+git add file.txt
+git commit -m "My commit message"
+
+//This adds the file to your local branch and updates the head, same as "git commit -am "My commit message". Be careful of this though as you will add all files and changes.
+
+//Now your local repository has all of your changes and you want to push them to the public repo
+
+//Run test cases, assuming no new failures continue, otherwise fix the issue.
+
+
+//If other people are working on your branch you need to pull their changes and merge before you can push your own
+
+git pull origin newBranchName
+
+//Possibly do a merge
+
+//Run test cases again
+
+//If you're here it means everything has been merged correctly and you have a valid set of changes to push to the public repo.
+
+git push origin newBranchName
+
+//Tada! A change has been pushed. Now notify anyone who cares that they can now get your changes.
+
+//Let's say you're ready for the changes to go into the sprint branch, now you need to get the latest on the sprint branch into your local repository, then merge that into your branch, then run tests, push up into your branch into the public repository, then finally create a pull request.
+
+git checkout sprint/sprint_current
+git pull
+git checkout newBranchName
+
+//You went to the current sprint, pulled the latest changes from the public repo to local, then switched back to the branch you're currently on. If you want to do it faster you can do "git pull origin sprint/sprint_current" from the newBranchName repo, but this will not give you the latest when you checkout back to sprint/sprint_current. Another way to do this is through WebStorm. That's got a nice GUI and works well.
+
+//If things need to be merged you'll get a message that tells you so. Just in case:
+git status
+
+//Assuming nothing needs merging or you completed the merge you're ready to run the tests. Assuming no new ones fail you can push your current local newBranchName repo into the public one and create a pull request.
+
+git push origin newBranchName
+
+//Go to stash and create a pull request. Add someone that didn't work on the code as a reviewer and you're good to go.
