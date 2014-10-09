@@ -40,6 +40,8 @@ git pull origin newBranchName
 
 git push origin newBranchName
 
+// “git config –global push.default simple” would make it so that this is just “git push”
+
 //Tada! A change has been pushed. Now notify anyone who cares that they can now get your changes.
 
 //Let's say you're ready for the changes to go into the sprint branch, now you need to get the latest on the sprint branch into your local repository, then merge that into your branch, then run tests, push up into your branch into the public repository, then finally create a pull request.
